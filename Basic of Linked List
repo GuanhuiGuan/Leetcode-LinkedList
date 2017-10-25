@@ -1,0 +1,6 @@
+ListNode dummyRoot(0);          //set up a dummy root
+ListNode *pointer = &dummyRoot; //set up a pointer pointing at the reference of the root
+
+pointer->next = new ListNode(x);//pointer use ->; create a new node
+
+return dummyRoot.next;          //element use .
