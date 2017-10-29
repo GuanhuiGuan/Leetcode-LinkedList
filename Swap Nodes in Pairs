@@ -1,0 +1,51 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        ListNode root = new ListNode(0);
+        root.next = head;
+        ListNode p0 = root;
+        
+        while(p0.next != null && p0.next.next != null)
+        {
+            ListNode p1 = p0.next;
+            ListNode p2 = p1.next;
+            p1.next = p2.next;
+            p2.next = p1;
+            p0.next = p2;
+            p0 = p1;
+        }
+        return root.next;
+    }
+}
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        ListNode **pp = &head; //head itself is a ListNode pointer, pp points to this pointer
+        ListNode *p1, *p2;//same type as head
+        
+        while((p1 = *pp) && (p2 = p1->next))//update p1 and p2, pointing to 1st and 2nd elements
+        {
+            p1->next = p2->next;//p1 points to the third(init points to the second)
+            p2->next = p1;//p2 points to the fisrt(p->next is also a pointer)(init points to the third)
+            *pp = p2;//The pointer pp points to points to the second element
+            pp = &(p1->next);//update pp
+        }
+        return head;
+    }
+};
