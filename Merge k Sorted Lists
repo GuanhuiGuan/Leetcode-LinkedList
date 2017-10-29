@@ -26,3 +26,35 @@ class Solution:
             pointer = pointer.next;
             
         return root.next;
+
+/** JAVA
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        PriorityQueue<Integer> heap = new PriorityQueue<Integer>();
+        int n = lists.length;
+        if(n == 0){return null;}//If the list is empty
+        for(int i = 0; i < n; i++){
+            while(lists[i] != null){
+                heap.add(lists[i].val);
+                lists[i] = lists[i].next;
+            }
+        }
+        if(heap.isEmpty()){return null;}//If every linkedlist is empty
+        ListNode root = new ListNode(heap.poll());
+        ListNode pointer = root;
+
+        while(!heap.isEmpty()){
+            ListNode buff = new ListNode(heap.poll());
+            pointer.next = buff;
+            pointer = pointer.next;
+        }
+        return root;
+    }
+}
