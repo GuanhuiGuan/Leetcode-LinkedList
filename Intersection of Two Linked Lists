@@ -24,3 +24,17 @@ public class Solution {
         return l;
     }
 }
+//____________Align Through Iterations(2 loops)_______________
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if(headA == null || headB == null)  return null;
+        ListNode a = headA, b = headB;
+        //equal length: both reach null or intersection
+        //otherwise the first loop aligns both pointers and we have two lists of equal lengths
+        while(a != b){
+            a = (a == null) ? headB : a.next;
+            b = (b == null) ? headA : b.next;
+        }
+        return a;
+    }
+}
