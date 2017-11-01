@@ -1,0 +1,26 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+ //__________Align Two Lists at the same starting node______________
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        int la = length(headA), lb = length(headB);//move two lists to the same starting points
+        while(la > lb){headA = headA.next; la--;}
+        while(la < lb){headB = headB.next; lb--;}
+        while(headA != headB){headA = headA.next; headB = headB.next;}
+        return headA;
+    }
+    public int length(ListNode node){
+        int l = 0;
+        while(node != null){node = node.next; l++;}
+        return l;
+    }
+}
