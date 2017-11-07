@@ -1,0 +1,22 @@
+class Solution {
+    public int findDuplicate(int[] nums) {
+        //the list is an abstract linked list; duplicate results in a circle
+        //though non-duplicates could also result in circles
+        //but enter from nums[0] guarantees to reach the circle with duplicate(since nothing can point back to nums[0])
+        if(nums.length == 1) return nums[0];
+        int slow = nums[0];
+        int fast = nums[nums[0]];
+        //find the circle
+        while(slow != fast){
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }
+        //find the entry point
+        fast = 0;
+        while(fast != slow){
+            fast = nums[fast];
+            slow = nums[slow];
+        }
+        return slow;
+    }
+}
